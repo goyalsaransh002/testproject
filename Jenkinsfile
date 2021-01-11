@@ -26,7 +26,7 @@
 //______________________________________________________________________________
 //
 
-@Library('cms5g-shared-library') _
+//@Library('cms5g-shared-library') _
 
 pipeline {
     agent any
@@ -36,7 +36,7 @@ pipeline {
         EMAIL_CC = ''
         PROJ_NAME = 'MP OBSERVABILITY'
         PROJ_SONAR_NAME = 'M5G:MP:OBS'
-        IS_SNAPSHOT = readMavenPom().getVersion().endsWith("-SNAPSHOT")
+       // IS_SNAPSHOT = readMavenPom().getVersion().endsWith("-SNAPSHOT")
     }
 
     options {
@@ -46,7 +46,7 @@ pipeline {
 
     tools {
         maven 'M3'
-        jdk 'OpenJDK 11'
+       // jdk 'OpenJDK 11'
     }
 
     stages {
