@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.igormaznitsa</groupId>
+  <artifactId>mvn-golang-example-hello-world</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>mvn-golang</packaging> 
+
+  <name>GoLangHelloWorld</name>
+  <description>Just a small example project to build a GoLang module with mvn-golang-wrapper</description>
+  <url>https://github.hpe.com/cms5g/5g-advanced-observability.git</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <mvn.golang.go.version>1.15.6</mvn.golang.go.version>
+    <mvn.golang.wrapper.version>2.3.6</mvn.golang.wrapper.version>  
+    <mvn.golang.disable.ssl.check>true</mvn.golang.disable.ssl.check>
+    <target.name>binResult</target.name>
+    <final.extension></final.extension>
+  </properties>
+
+  <profiles>
+    <profile>
+      <id>when-windows</id>
+      <activation>
+        <os>
+          <family>windows</family>
+        </os>
+      </activation>
+      <!--<properties>
+        <final.extension>.exe</final.extension>
+      </properties> -->
+    </profile>
+  </profiles>
+
+  <build>
+    <sourceDirectory>${basedir}</sourceDirectory>
+    <directory>${basedir}${file.separator}bin</directory>
+    <defaultGoal>clean package</defaultGoal>
+    <finalName>${target.name}${final.extension}</finalName>
+     <plugins>
+     <!-- <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <followSymLinks>false</followSymLinks>
+          <excludeDefaultDirectories>true</excludeDefaultDirectories>
+          <filesets>
+            <fileset>
+              <directory>${basedir}${file.separator}pkg</directory>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin> -->
+
+      
+      <plugin>
+        <groupId>com.igormaznitsa</groupId>
+        <artifactId>mvn-golang-wrapper</artifactId>
+        <version>${mvn.golang.wrapper.version}</version>
+        <extensions>true</extensions>
+      </plugin> 
+
+    </plugins>
+
+  </build>
+
+</project>
